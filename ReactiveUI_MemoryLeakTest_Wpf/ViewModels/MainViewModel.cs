@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,10 @@ namespace ReactiveUI_MemoryLeakTest_Wpf.ViewModels
 
         private SourceCache<TestModel, int> sourceCache;
         public ReadOnlyObservableCollection<TestViewModel> Tests => tests;
+
+        public IDisposable intervalObservable { get; private set; }
+        public ReactiveCommand<Unit, Unit> CancelIntervalCommand { get; }
+
         private ReadOnlyObservableCollection<TestViewModel> tests;
         private Random random;
         public MainViewModel()
@@ -29,12 +34,14 @@ namespace ReactiveUI_MemoryLeakTest_Wpf.ViewModels
                 .Bind(out tests)
                 .Subscribe();
 
-            Observable.Interval(TimeSpan.FromMilliseconds(100))
+            intervalObservable = Observable.Interval(TimeSpan.FromMilliseconds(100))
                 .Select(_ => new TestModel(random.Next(99999), random.Next(99999).ToString(), TimeSpan.FromMilliseconds(random.Next(99999))))
                 .Do(sourceCache.AddOrUpdate)
                 .Delay(TimeSpan.FromMilliseconds(90))
                 .Do(sourceCache.Remove)
                 .Subscribe();
+
+            CancelIntervalCommand = ReactiveCommand.Create(intervalObservable.Dispose);
 
         }
     }

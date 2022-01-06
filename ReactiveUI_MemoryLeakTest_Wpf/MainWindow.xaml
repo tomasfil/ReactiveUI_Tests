@@ -6,14 +6,17 @@
     xmlns:local="clr-namespace:ReactiveUI_MemoryLeakTest_Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rx="http://reactiveui.net"
-    x:TypeArguments="vm:MainViewModel"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:vm="clr-namespace:ReactiveUI_MemoryLeakTest_Wpf.ViewModels"
     Title="MainWindow"
     Width="800"
     Height="450"
+    x:TypeArguments="vm:MainViewModel"
     mc:Ignorable="d">
     <Grid>
-        <ItemsControl x:Name="TestIC" />
+        <StackPanel>
+            <Button x:Name="Cancel_Button" Content="cancel" />
+            <ItemsControl x:Name="TestIC" />
+        </StackPanel>
     </Grid>
 </rx:ReactiveWindow>

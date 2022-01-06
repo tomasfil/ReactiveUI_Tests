@@ -32,6 +32,9 @@ namespace ReactiveUI_MemoryLeakTest_Wpf
             this.WhenActivated(d => {
                 this.OneWayBind(ViewModel, vm => vm.Tests, v => v.TestIC.ItemsSource)
                     .DisposeWith(d);
+
+                this.BindCommand(ViewModel, vm=>vm.CancelIntervalCommand, v=>v.Cancel_Button)
+                    .DisposeWith(d);
             });
            
         }
