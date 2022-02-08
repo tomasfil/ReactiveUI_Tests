@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ReactiveUI" Version="17.1.17" />
-    <PackageReference Include="ReactiveUI.Fody" Version="17.1.17" />
-    <PackageReference Include="ReactiveUI.WPF" Version="17.1.17" />
+    <PackageReference Include="ReactiveUI" Version="16.4.15" />
+    <PackageReference Include="ReactiveUI.Fody" Version="16.4.15" />
+    <PackageReference Include="ReactiveUI.WPF" Version="16.4.15" />
   </ItemGroup>
 
 </Project>
