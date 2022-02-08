@@ -12,6 +12,6 @@
     x:TypeArguments="local:ViewModel"
     mc:Ignorable="d">
     <Grid>
-        <DataGrid x:Name="Main_DataGrid" />
+        <DataGrid x:Name="Main_DataGrid" EnableRowVirtualization="False" />
     </Grid>
 </rx:ReactiveWindow>

@@ -15,6 +15,8 @@ namespace ReactiveUI_DataGrid_MemoryLeak
     {
         private readonly SourceCache<TestModel,Guid> _modelsCache;
         private readonly ReadOnlyObservableCollection<TestModel> _models;
+        private IDisposable cycle;
+
         public ReadOnlyObservableCollection<TestModel> Models=>_models;
         public ViewModel()
         {
@@ -25,16 +27,25 @@ namespace ReactiveUI_DataGrid_MemoryLeak
                 .Bind(out _models)
                 .Subscribe();
 
-            var cycle=Observable.Interval(TimeSpan.FromSeconds(1))
-                .Select(_ => Enumerable.Range(0, 30).Select(_ => new TestModel()).ToList())
-                .Do(col => _modelsCache.AddOrUpdate(col))
-                .Delay(TimeSpan.FromSeconds(0.5))
-                .Do(col => _modelsCache.Remove(col))
-                .Subscribe();
+            Observable.Start(() => Unit.Default, RxApp.TaskpoolScheduler)
+               .Delay(TimeSpan.FromSeconds(5))
+               .Subscribe(_=>StartCycle());
 
             Observable.Start(() => Unit.Default, RxApp.TaskpoolScheduler)
-                .Delay(TimeSpan.FromSeconds(30))
-                .Subscribe(_ => cycle.Dispose());
+                .Delay(TimeSpan.FromSeconds(45))
+                .Do(_ => cycle.Dispose())
+                .Do(_ => _modelsCache.Clear())
+                .Subscribe();
+        }
+
+        private void StartCycle()
+        {
+            cycle = Observable.Interval(TimeSpan.FromSeconds(0.2))
+                .Select(_ => Enumerable.Range(0, 100).Select(_ => new TestModel()).ToList())
+                .Do(col => _modelsCache.AddOrUpdate(col))
+                .Delay(TimeSpan.FromSeconds(0.2))
+                .Do(col => _modelsCache.Remove(col))
+                .Subscribe();
         }
     }
 }
