@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactiveUI_MemoryLeakTest_Wpf", "ReactiveUI_MemoryLeakTest_Wpf/ReactiveUI_MemoryLeakTest_Wpf.csproj", "{9A0B27BE-DBDF-4167-965D-F870C179DA86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactiveUI_MemoryLeakTest_Wpf", "ReactiveUI_MemoryLeakTest_Wpf\ReactiveUI_MemoryLeakTest_Wpf.csproj", "{9A0B27BE-DBDF-4167-965D-F870C179DA86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveUI_GroupingIssueTest_Wpf", "ReactiveUI_GroupingIssueTest_Wpf/ReactiveUI_GroupingIssueTest_Wpf.csproj", "{0C56AD2E-3A73-44DC-A2B4-24078BA2AB2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactiveUI_GroupingIssueTest_Wpf", "ReactiveUI_GroupingIssueTest_Wpf\ReactiveUI_GroupingIssueTest_Wpf.csproj", "{0C56AD2E-3A73-44DC-A2B4-24078BA2AB2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveUI_DataGrid_MemoryLeak", "ReactiveUI_DataGrid_MemoryLeak\ReactiveUI_DataGrid_MemoryLeak.csproj", "{8B09A951-94AA-466D-BFDC-10C43750EAB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0C56AD2E-3A73-44DC-A2B4-24078BA2AB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C56AD2E-3A73-44DC-A2B4-24078BA2AB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C56AD2E-3A73-44DC-A2B4-24078BA2AB2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B09A951-94AA-466D-BFDC-10C43750EAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B09A951-94AA-466D-BFDC-10C43750EAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B09A951-94AA-466D-BFDC-10C43750EAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B09A951-94AA-466D-BFDC-10C43750EAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
