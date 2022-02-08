@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReactiveUI_DataGrid_MemoryLeak
 {
-    public class TestModel : ReactiveObject
+    public class TestModel 
     {
         public TestModel()
         {
@@ -20,19 +18,19 @@ namespace ReactiveUI_DataGrid_MemoryLeak
             TestProp5 = "TestProp5";
             TestProp6 = "TestProp6";
         }
-        [Reactive]
+        
         public Guid Id { get; set; }
-        [Reactive]
+        
         public string TestProp1 { get; set; }
-        [Reactive]
+        
         public string TestProp2 { get; set; }
-        [Reactive]
+        
         public string TestProp3 { get; set; }
-        [Reactive]
+        
         public string TestProp4 { get; set; }
-        [Reactive]
+        
         public string TestProp5 { get; set; }
-        [Reactive]
+        
         public string TestProp6 { get; set; }
     }
 }

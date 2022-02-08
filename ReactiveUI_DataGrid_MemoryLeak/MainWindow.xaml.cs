@@ -1,8 +1,7 @@
-﻿using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,17 +19,44 @@ namespace ReactiveUI_DataGrid_MemoryLeak
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : ReactiveWindow<ViewModel>
+    public partial class MainWindow : Window
     {
+        public ObservableCollection<TestModel> Models = new ObservableCollection<TestModel>();
+        private bool doIt = true;
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel= new ViewModel();
-            this.WhenActivated(d => 
+            //var ViewModel= new ViewModel();
+            this.Main_DataGrid.ItemsSource = Models;
+            //this.WhenActivated(d => 
+            //{
+            //    this.OneWayBind(ViewModel, vm => vm.Models, v => v.Main_DataGrid.ItemsSource)
+            //    .DisposeWith(d);
+            //});
+            Task.Run(StartCycle);
+            Task.Run(BreakCycle);
+        }
+
+        private async Task BreakCycle()
+        {
+            await Task.Delay(15000);
+            doIt = false;
+        }
+
+        private async Task StartCycle()
+        {
+            while (doIt)
             {
-                this.OneWayBind(ViewModel, vm => vm.Models, v => v.Main_DataGrid.ItemsSource)
-                .DisposeWith(d);
-            });
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    foreach (var model in Enumerable.Range(0, 100).Select(_ => new TestModel()).ToList())
+                    {
+                        Models.Add(model);
+                    }
+                });
+                await Task.Delay(200);
+            }
+            Application.Current.Dispatcher.Invoke(() => Models.Clear());
         }
     }
 }
