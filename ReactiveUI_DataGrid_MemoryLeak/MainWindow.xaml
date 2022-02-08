@@ -11,5 +11,8 @@
     mc:Ignorable="d">
     <Grid>
         <DataGrid x:Name="Main_DataGrid" EnableRowVirtualization="False" />
+        <ScrollViewer>
+            <ItemsControl x:Name="Main_ItemsControl" />
+        </ScrollViewer>
     </Grid>
 </Window>

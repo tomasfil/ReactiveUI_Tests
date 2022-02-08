@@ -26,13 +26,9 @@ namespace ReactiveUI_DataGrid_MemoryLeak
         public MainWindow()
         {
             InitializeComponent();
-            //var ViewModel= new ViewModel();
             this.Main_DataGrid.ItemsSource = Models;
-            //this.WhenActivated(d => 
-            //{
-            //    this.OneWayBind(ViewModel, vm => vm.Models, v => v.Main_DataGrid.ItemsSource)
-            //    .DisposeWith(d);
-            //});
+           // this.Main_ItemsControl.ItemsSource = Models;
+         
             Task.Run(StartCycle);
             Task.Run(BreakCycle);
         }
@@ -49,7 +45,7 @@ namespace ReactiveUI_DataGrid_MemoryLeak
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    foreach (var model in Enumerable.Range(0, 100).Select(_ => new TestModel()).ToList())
+                    foreach (var model in Enumerable.Range(0, 500).Select(_ => new TestModel()).ToList())
                     {
                         Models.Add(model);
                     }
