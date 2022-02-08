@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ReactiveUI_DataGrid_MemoryLeak
 {
-    public class TestModel 
+    public class TestModel : INotifyPropertyChanged
     {
         public TestModel()
         {
@@ -32,5 +33,7 @@ namespace ReactiveUI_DataGrid_MemoryLeak
         public string TestProp5 { get; set; }
         
         public string TestProp6 { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
