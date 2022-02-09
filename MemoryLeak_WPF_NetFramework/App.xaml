@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="ReactiveUI_DataGrid_MemoryLeak.App"
+    x:Class="MemoryLeak_WPF_NetFramework.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:ReactiveUI_DataGrid_MemoryLeak"
+    xmlns:local="clr-namespace:MemoryLeak_WPF_NetFramework"
     StartupUri="MainWindow.xaml">
     <Application.Resources />
 </Application>
