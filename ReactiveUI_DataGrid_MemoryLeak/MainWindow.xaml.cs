@@ -35,7 +35,7 @@ namespace ReactiveUI_DataGrid_MemoryLeak
 
         private async Task BreakCycle()
         {
-            await Task.Delay(15000);
+            await Task.Delay(1000*600);
             doIt = false;
         }
 
@@ -50,9 +50,10 @@ namespace ReactiveUI_DataGrid_MemoryLeak
                         Models.Add(model);
                     }
                 });
-                await Task.Delay(200);
+                await Task.Delay(500);
+                  Application.Current.Dispatcher.Invoke(() => Models.Clear());
             }
-            Application.Current.Dispatcher.Invoke(() => Models.Clear());
+          
         }
     }
 }

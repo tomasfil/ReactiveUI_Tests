@@ -54,5 +54,19 @@ namespace MemoryLeak_WPF_NetFramework
             }
             Application.Current.Dispatcher.Invoke(() => Models.Clear());
         }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            while (doIt)
+            {
+                    foreach (var model in Enumerable.Range(0, 500).Select(_ => new TestModel()).ToList())
+                    {
+                        Models.Add(model);
+                    }
+                await Task.Delay(200);
+            }
+            await Task.Delay(2000);
+            Models.Clear();
+        }
     }
 }
