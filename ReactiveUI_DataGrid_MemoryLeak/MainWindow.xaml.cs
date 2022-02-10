@@ -50,7 +50,7 @@ namespace ReactiveUI_DataGrid_MemoryLeak
                         Models.Add(model);
                     }
                 });
-                await Task.Delay(500);
+                await Task.Delay(200);
                   Application.Current.Dispatcher.Invoke(() => Models.Clear());
             }
           
