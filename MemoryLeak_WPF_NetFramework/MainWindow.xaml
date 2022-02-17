@@ -1,0 +1,15 @@
+﻿<Window x:Class="MemoryLeak_WPF_NetFramework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Loaded="Window_Loaded"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoryLeak_WPF_NetFramework"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="Main_DataGrid" EnableRowVirtualization="False" />
+        <ScrollViewer>
+            <ItemsControl x:Name="Main_ItemsControl" />
+        </ScrollViewer>
+    </Grid>
+</Window>
