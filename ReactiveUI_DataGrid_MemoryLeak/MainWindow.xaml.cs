@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace ReactiveUI_DataGrid_MemoryLeak
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public ObservableCollection<TestModel> Models = new ObservableCollection<TestModel>();
         private bool doIt = true;
         public MainWindow()
@@ -28,6 +30,8 @@ namespace ReactiveUI_DataGrid_MemoryLeak
             InitializeComponent();
             this.Main_DataGrid.ItemsSource = Models;
            // this.Main_ItemsControl.ItemsSource = Models;
+
+
          
             Task.Run(StartCycle);
             Task.Run(BreakCycle);
