@@ -29,9 +29,6 @@ namespace Akavache_InMemoryCacheTests
             InitializeComponent();
             Akavache.Registrations.Start("AkavaTest");
             RunCycle();
-            RunCycle();
-            RunCycle();
-            RunCycle();
         }
 
         private void RunCycle()
