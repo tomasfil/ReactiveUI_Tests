@@ -1,5 +1,4 @@
 ﻿using ReactiveUI;
-using ReactiveUI.Fody;
 using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
@@ -14,9 +13,9 @@ namespace Akavache_InMemoryCacheTests
         [Reactive]
         public string IntString { get; set; }
 
-        public IntModel(string num)
+        public IntModel(string intString)
         {
-            IntString = num;
+            IntString = intString;
         }
 
         public static string GetCacheIdentifier(object parameter)

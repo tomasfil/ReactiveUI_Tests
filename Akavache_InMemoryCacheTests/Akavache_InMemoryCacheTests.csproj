@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="akavache" Version="7.3.47" />
-    <PackageReference Include="akavache.core" Version="7.3.47" />
     <PackageReference Include="ReactiveUI" Version="16.4.15" />
     <PackageReference Include="ReactiveUI.WPF" Version="16.4.15" />
     <PackageReference Include="ReactiveUI.Fody" Version="16.4.15" />

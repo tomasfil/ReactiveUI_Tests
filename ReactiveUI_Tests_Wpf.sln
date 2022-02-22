@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactiveUI_DataGrid_MemoryL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryLeak_WPF_NetFramework", "MemoryLeak_WPF_NetFramework\MemoryLeak_WPF_NetFramework.csproj", "{98FF8AAA-C04B-4214-83ED-5410DB4AF9A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akavache_InMemoryCacheTests", "Akavache_InMemoryCacheTests\Akavache_InMemoryCacheTests.csproj", "{FD540B40-F54B-4E52-B076-090A56F4173F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akavache_InMemoryCacheTests", "Akavache_InMemoryCacheTests\Akavache_InMemoryCacheTests.csproj", "{FD540B40-F54B-4E52-B076-090A56F4173F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveUI_Akavache_Suspension", "ReactiveUI_Akavache_Suspension\ReactiveUI_Akavache_Suspension.csproj", "{7CC62234-9E53-403F-93D3-C1E7A10FD3F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FD540B40-F54B-4E52-B076-090A56F4173F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD540B40-F54B-4E52-B076-090A56F4173F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD540B40-F54B-4E52-B076-090A56F4173F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC62234-9E53-403F-93D3-C1E7A10FD3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC62234-9E53-403F-93D3-C1E7A10FD3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC62234-9E53-403F-93D3-C1E7A10FD3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC62234-9E53-403F-93D3-C1E7A10FD3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

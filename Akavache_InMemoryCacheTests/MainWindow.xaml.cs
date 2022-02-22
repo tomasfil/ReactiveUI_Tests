@@ -28,6 +28,7 @@ namespace Akavache_InMemoryCacheTests
         {
             InitializeComponent();
             Akavache.Registrations.Start("AkavaTest");
+            
             RunCycle();
         }
 
@@ -37,7 +38,7 @@ namespace Akavache_InMemoryCacheTests
             {
                 while (true)
                 {
-                    var parameter = rnd.Next(0, 100);
+                    var parameter = 69;// rnd.Next(0, 100);
                     IntModel? intModel = await BlobCache.InMemory.GetOrFetchObject(IntModel.GetCacheIdentifier(parameter), () => GetIntAsync(parameter));
                     //IntModel? intModel = await BlobCache.LocalMachine.GetOrFetchObject(IntModel.GetCacheIdentifier(parameter), () => GetIntAsync(parameter));
 
