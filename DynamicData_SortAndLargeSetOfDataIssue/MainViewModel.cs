@@ -28,6 +28,7 @@ public class MainViewModel : ReactiveObject
         InitialInventoriesLoadCommand.Execute().Subscribe();
 
         var publishedSelectableInventories = inventoriesCache.Connect()
+            .ObserveOn(RxApp.TaskpoolScheduler)
            .TransformWithInlineUpdate(inv => new SelectableValue<string>(inv.Name), (val, inv) => val.SetValue(inv.Name))
            .DisposeMany()
            .Publish();
@@ -35,6 +36,7 @@ public class MainViewModel : ReactiveObject
         SelectableInventoriesViewModel = new SelectableValuesStringChangeSetViewModel(publishedSelectableInventories);
 
         var publishedStockChangeSet = publishedSelectableInventories.AutoRefresh(x => x.IsSelected)
+            .ObserveOn(RxApp.TaskpoolScheduler)
          .Filter(f => f.IsSelected)
          .TransformAsync(async selectableValue => await LoadStocksImpl(selectableValue))
          .TransformMany(dataRows => dataRows, dataRow => dataRow.Guid)
@@ -45,18 +47,9 @@ public class MainViewModel : ReactiveObject
           .Transform(item => new SelectableValue<string>(item))
           .Publish();
 
-        //SelectableItemsViewModel = new SelectableValuesStringChangeSetViewModel(publishedItemsChangeSet);
-
-        /*    var stockFilter = publishedItemsChangeSet.AutoRefresh(x => x.IsSelected)
-              .ToCollection()
-              .Throttle(TimeSpan.FromMilliseconds(300))
-              .Select(s => s.Where(x => x.IsSelected).Select(s => s.Value).ToList())
-              .Select(items => new Func<Stock, bool>(stock => items.Count == 0 || items.Contains(stock.Item)));*/
+        SelectableItemsViewModel = new SelectableValuesStringChangeSetViewModel(publishedItemsChangeSet);
 
         publishedStockChangeSet
-            //.Filter(stockFilter)
-            //     .Filter(stockSearchFilter)
-            //    .Sort(SortExpressionComparer<Stock>.Ascending(stock => stock.ExpirationDate).ThenByAscending(stock => stock.CaseNo))
             .ObserveOn(RxApp.MainThreadScheduler)
             .Bind(out stockDataRows)
             .Subscribe();
@@ -82,7 +75,7 @@ public class MainViewModel : ReactiveObject
         try
         {
             //IO Call
-            await Task.Delay(getRandom.Next(1, 3000));
+            await Task.Delay(getRandom.Next(1, 4000));
 
             return Enumerable.Range(0, getRandom.Next(1, 1000))
                 .Select(i => new Stock() {
@@ -109,7 +102,15 @@ public class MainViewModel : ReactiveObject
     {
         try
         {
-            var inventories = Enumerable.Range(1, 150).Select(i=> new Inventory() { Name = i.ToString(), SomeProp = Math.Pow(i,i).ToString()}).ToList();
+            var inventories = Enumerable.Range(1, 150)
+                .Select(i=> 
+                    new Inventory() 
+                    { 
+                        Name = i.ToString(), 
+                        SomeProp = Math.Pow(i,i).ToString()
+                    })
+                .OrderBy(o=>o.RandomSortHelper)
+                .ToList();
             return await Task.FromResult(inventories);
         }
         catch (OperationCanceledException)
