@@ -3,15 +3,14 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ReactiveUI.Fody" Version="17.1.50" />
+  </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Akavache\src\Akavache.Core\Akavache.Core.csproj" />
-    <ProjectReference Include="..\..\Akavache\src\Akavache\Akavache.csproj" />
-    <ProjectReference Include="..\..\ReactiveUI\src\ReactiveUI.Fody\ReactiveUI.Fody.csproj" />
     <ProjectReference Include="..\..\ReactiveUI\src\ReactiveUI.Wpf\ReactiveUI.Wpf.csproj" />
     <ProjectReference Include="..\..\ReactiveUI\src\ReactiveUI\ReactiveUI.csproj" />
     <ProjectReference Include="..\..\splat\src\Splat\Splat.csproj" />

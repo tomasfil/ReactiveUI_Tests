@@ -24,6 +24,8 @@ namespace ReactiveUI_Akavache_Suspension
             this.autoSuspendHelper = new AutoSuspendHelper(this);
             RxApp.SuspensionHost.CreateNewAppState = () => new MainViewModel();
             RxApp.SuspensionHost.SetupDefaultSuspendResume(new AkavacheSuspensionDriver<MainViewModel>());
+
+            var vm = RxApp.SuspensionHost.GetAppState<MainViewModel>();
         }
     }
 }
