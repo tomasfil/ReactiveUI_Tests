@@ -27,18 +27,19 @@ public class MainViewModel : ReactiveObject
         InitialInventoriesLoadCommand = ReactiveCommand.CreateFromObservable(InitialInventoriesLoadImpl);
         InitialInventoriesLoadCommand.Execute().Subscribe();
 
+        LoadStocksCommand = ReactiveCommand.CreateFromObservable<SelectableValue<string>, IList<StockDataRow>>(LoadStocksImpl);
+
         var publishedSelectableInventories = inventoriesCache.Connect()
-            .ObserveOn(RxApp.TaskpoolScheduler)
            .TransformWithInlineUpdate(inv => new SelectableValue<string>(inv.Name), (val, inv) => val.SetValue(inv.Name))
            .DisposeMany()
            .Publish();
 
         SelectableInventoriesViewModel = new SelectableValuesStringChangeSetViewModel(publishedSelectableInventories);
 
-        var publishedStockChangeSet = publishedSelectableInventories.AutoRefresh(x => x.IsSelected)
-            .ObserveOn(RxApp.TaskpoolScheduler)
-         .Filter(f => f.IsSelected)
-         .TransformAsync(async selectableValue => await LoadStocksImpl(selectableValue))
+        var publishedStockChangeSet = publishedSelectableInventories
+            .AutoRefresh(x => x.IsSelected, changeSetBuffer: TimeSpan.FromMilliseconds(50), scheduler: RxApp.TaskpoolScheduler)
+             .Filter(f => f.IsSelected)
+         .TransformAsync(async selectableValue => await LoadStocksCommand.Execute(selectableValue))
          .TransformMany(dataRows => dataRows, dataRow => dataRow.Guid)
          .Publish();
 
@@ -68,20 +69,22 @@ public class MainViewModel : ReactiveObject
             .SelectMany(LoadStockDataRowsAsync);
     }
 
-    private Random getRandom=> new Random();    
+    private Random getRandom=> new Random();
+
+    public ReactiveCommand<SelectableValue<string>, IList<StockDataRow>> LoadStocksCommand { get; }
 
     private async Task<IList<StockDataRow>> LoadStockDataRowsAsync(string inventory, CancellationToken cancellationToken)
     {
         try
         {
             //IO Call
-            await Task.Delay(getRandom.Next(1, 4000));
+            await Task.Delay(getRandom.Next(1, 100));
 
             return Enumerable.Range(0, getRandom.Next(1, 1000))
                 .Select(i => new Stock() {
                     CaseNo = $"CaseNo{i}", 
                     ExpirationDate = DateTime.Now.AddHours(i),
-                    Item = $"ItemNumber-{getRandom.Next(1, 100)}",
+                    Item = $"ItemNumber-{getRandom.Next(1, 10000)}",
                     Inventory=inventory
                 })
                 .Select(stock => new StockDataRow(stock)).ToList();
