@@ -27,7 +27,7 @@ body:
         4. See error
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: reproduce-repository
     attributes:
       label: Reproduction repository
