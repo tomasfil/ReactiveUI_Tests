@@ -8,20 +8,18 @@ body:
       value: |
         ## Please note although we can't commit to any timeline, priority will be given to those who are [Contributors](https://github.com/reactiveui/ReactiveUI#contribute ) to the project.
   - type: textarea
-    id: what-happened
+    id: description
     attributes:
       label: Describe the bug 🐞
       description: A clear and concise description of what the bug is.
-      placeholder: Tell us what you see!
       value: "A bug happened!"
     validations:
       required: true
   - type: textarea
-    id: Reproduce
+    id: reproduce-steps
     attributes:
       label: Step to reproduce
       description: "Steps to reproduce the behavior:"
-      placeholder:
       value: |
         1. Go to '...'
         2. Click on '....'
@@ -30,7 +28,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: Reproduce
+    id: reproduce-repository
     attributes:
       label: Reproduction repository
       description: "Simple repository representing the bug"
@@ -44,7 +42,6 @@ body:
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
-      placeholder: Tell us what you see!
       value: This should happen...
     validations:
       required: true
@@ -53,8 +50,6 @@ body:
     attributes:
       label: Screenshots 🖼️
       description: If applicable, add screenshots to help explain your problem.
-      placeholder:
-      value:
     validations:
       required: false
   - type: input
@@ -86,9 +81,9 @@ body:
     validations:
       required: false
   - type: textarea
-    id: Additional
+    id: additional-information
     attributes:
-      label: ℹ️ Additional context
-      description: Add any other context about the problem here.
+      label: Additional information ℹ️
+      description: Add any other information about the problem here.
     validations:
       required: false
