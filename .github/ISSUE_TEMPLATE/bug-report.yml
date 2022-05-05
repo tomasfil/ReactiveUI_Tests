@@ -52,6 +52,19 @@ body:
       description: If applicable, add screenshots to help explain your problem.
     validations:
       required: false
+  - type: dropdown
+    id: ide
+    attributes:
+      label: IDE
+      multiple: true
+      options:
+        - Visual Studio 2022
+        - Visual Studio 2019
+        - Visual Studio 2017
+        - Visual Studio for Mac
+        - Rider Windows
+        - Rider macOS
+        - Visual Studio Code
   - type: input
     id: operating-system
     attributes:
